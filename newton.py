@@ -10,22 +10,29 @@ def optimize(x, f):
     e = 0.1
     
     d1 = deriv(x, f)
-    d2 = deriv(d1, f)
+    d2 = deriv2(x, f)
     x1 = x - d1/d2
 
     if abs(x1 - x) <= e:
         return x1
     else:
-        optimize(x1, f)
+        return optimize(x1, f)
 
 
 def deriv(x, f):
     """
     f(x+e) - f(x) / e -> f'(x)
     """
-    e = 0.1
+    e = 0.05
 
     d = (f(x+e) - f(x))/e
+    
+    return d
+
+def deriv2(x, f):
+    e = 0.05
+
+    d = (deriv(x+e, f) - deriv(x, f))/e
     
     return d
 
