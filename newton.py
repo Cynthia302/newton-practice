@@ -21,6 +21,9 @@ def optimize(x, f):
 
 def deriv(x, f):
     """
+    x: starting value x0
+    f: f(.) to optimize
+    
     f(x+e) - f(x) / e -> f'(x)
     """
     e = 0.05
@@ -30,6 +33,12 @@ def deriv(x, f):
     return d
 
 def deriv2(x, f):
+    """
+    x: starting value x0
+    f: f(.) to optimize
+    
+    f'(x+e) - f'(x) / e -> f''(x)
+    """
     e = 0.05
 
     d = (deriv(x+e, f) - deriv(x, f))/e
@@ -38,5 +47,10 @@ def deriv2(x, f):
 
 
 def quadratic(x):
+    """
+    x: value
+
+    returns x^2 output
+    """
     return x**2
     
