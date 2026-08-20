@@ -1,8 +1,23 @@
 import pandas as pd
 import numpy as np
-import math
-import warning
+from scipy.differentiate import hessian
 
+def optimize_multivariate(x, f):
+    """
+    x: starting values vector
+    f: f(.) to optimize
+    """
+    e = 0.1
+
+    d1 = np.gradient(f, x)
+    hes = hessian(f, x)
+    d2 = np.linalg.inv(hes)
+    x1 = x - d2 @ d1
+
+    if abs(x1 - x) <= e:
+        return x1
+    else:
+        return optimize_multivariate(x1, f)
 
 def optimize(x, f):
     """
