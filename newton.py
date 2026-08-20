@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import math
+import warning
 
 
 def optimize(x, f):
@@ -8,6 +9,12 @@ def optimize(x, f):
     x: starting value x0
     f: f(.) to optimize
     """
+    if not isinstance(x, float):
+        raise ValueError("The starting value must be a number.")
+
+    if not callable(f):
+        raise ValueError("Input must be a function.")
+    
     e = 0.1
 
     d1 = deriv(x, f)
